@@ -12,6 +12,7 @@ setup(
     install_requires=[
         "reciprocalspaceship>=0.9.15",
         "matplotlib",
+        "celluloid",
     ],
     entry_points = {
         "console_scripts": [
