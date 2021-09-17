@@ -11,6 +11,8 @@ python setup.py install
 disco.wow
 ```
 
+![disco.wow output](example.gif)
+
 
 ### Usage
 Right now all this does is install an admittedly silly commandline application. 
