@@ -57,14 +57,12 @@ class Detector:
         return x,y
 
 class Ball:
-    @rs.decorators.cellify
-    @rs.decorators.spacegroupify
     def __init__(self, cell, spacegroup, dmin, lambda_min, lambda_max, s0=(0, 0., 1.)):
         """
         Parameters
         ----------
-        cell : iterable or gemmi.UnitCell
-        spacegroup : int or str or gemmi.SpaceGroup
+        cell : gemmi.UnitCell
+        spacegroup : gemmi.SpaceGroup
         dmin : float
             Highest resolution refleciotn in Å
         lambda_min : float
