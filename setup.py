@@ -11,6 +11,7 @@ setup(
     description='Compute random laue spot centroids for training machine learning models',
     install_requires=[
         "reciprocalspaceship>=0.9.15",
+        "matplotlib",
     ],
     entry_points = {
         "console_scripts": [
