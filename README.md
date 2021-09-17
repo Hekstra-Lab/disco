@@ -8,6 +8,7 @@ Generate feasible Laue Bragg spots from randomly oriented crystals
 git clone https://github.com/Hekstra-Lab/disco
 cd disco
 python setup.py install
+disco.wow
 ```
 
 
