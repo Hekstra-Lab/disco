@@ -25,7 +25,7 @@ def main():
 
     detector = Detector.from_detector_dist(detector_dist, size_x, size_y, beam_x, beam_y)
 
-    f = plt.figure(figsize=(7, 7))
+    f = plt.figure(figsize=(10, 10))
     from celluloid import Camera
     cam = Camera(f)
     lmin,lmax = 1., 1.2 #<-- a typical wavelength range in Å
@@ -47,7 +47,7 @@ def main():
         except:
             continue
         x, y = detector.project(s1)
-        plt.plot(x, y, 'k.')
+        plt.plot(x, y, 'k.', alpha=0.3)
         plt.plot(beam_x, beam_y, 'xr')
         plt.xlim(0., 2*beam_x)
         plt.ylim(0., 2*beam_y)
@@ -55,5 +55,9 @@ def main():
 
     anim = cam.animate()
     if parser.s is not None:
-        anim.save(parser.s)
+        if parser.s.endswith(".gif"):
+            anim.save(parser.s, writer='imagemagick')
+            print("HIHIHII")
+        elif parser.s.endswith(".mp4"):
+            anim.save(parser.s)
     plt.show()
