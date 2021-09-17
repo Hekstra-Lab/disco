@@ -7,7 +7,6 @@ setup(
     author_email='kmdalton@fas.harvard.edu',
     packages=find_packages(),
     include_package_data=True,
-    package_data={'' : ['data/pdb_data.csv.bz2']},
     description='Compute random laue spot centroids for training machine learning models',
     install_requires=[
         "reciprocalspaceship>=0.9.15",
