@@ -51,7 +51,13 @@ class Detector:
         x,y : array
         """
         # Normalize
-        s1 = s1 / np.linalg.norm(s1, axis=-1)[:,None]
+        #s1 = s1 / np.linalg.norm(s1, axis=-1)[:,None]
+        norm = np.sqrt(
+            s1[...,0]*s1[...,0] + 
+            s1[...,1]*s1[...,1] + 
+            s1[...,2]*s1[...,2]
+        )
+        s1 /= norm[...,None]
         xya = s1 @ np.linalg.inv(self.dmat) 
         x,y = xya[:,0] / xya[:,2], xya[:,1] / xya[:,2]
         return x,y
@@ -83,7 +89,7 @@ class Ball:
         self.lambda_max = lambda_max
         self.s0 = s0 / np.linalg.norm(s0)
 
-    def get_random_scattered_beam_wavevectors(self):
+    def get_random_scattered_beam_wavevectors(self, return_millers=False):
         """
         Randomly generate a rotation matrix, and use it to compute all feasible scattered beam wavevectors.
         """
@@ -96,10 +102,12 @@ class Ball:
         Qall = (R@B@self.Hall.T).T
 
         # My own calculation (sorry)
-        wavelength = -2. * np.sum(Qall * self.s0[None,:], axis=1) / np.sum(Qall*Qall, axis=1)
+        wavelength = -2. * np.sum(Qall * self.s0[None,:], axis=-1) / np.sum(Qall*Qall, axis=-1)
         feasible = (wavelength >= self.lambda_min) & (wavelength <= self.lambda_max)
         s1 = Qall + self.s0[None,:]/wavelength[:,None]
         #s1 = Qall * wavelength[:, None] + self.s0
+        if return_millers:
+            return s1[feasible], self.Hall[feasible]
         return s1[feasible]
 
 

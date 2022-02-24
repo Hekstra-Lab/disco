@@ -40,21 +40,21 @@ class SelfAttentionBlock(tfk.layers.Layer):
         out = out*mask
         return out, mask
 
+        
+
 class Assigner(tfk.models.Model):
     def __init__(self, attention_blocks, attention_dims, num_heads, ff_dims=None,  hmax=50):
         super().__init__()
         if ff_dims is None:
             ff_dims = attention_dims
-        self.normalizers = None
         self.embed = tfk.layers.Dense(attention_dims, kernel_initializer='identity')
-        self.normalize = tfk.layers.LayerNormalization(axis=-2)
 
         self.encoder_layers = []
         for i in range(attention_blocks):
             self.encoder_layers.append(SelfAttentionBlock(attention_dims,  num_heads, ff_dims=ff_dims))
 
         self.decoder_layers = []
-        self.decoder_layers.append(tfk.layers.Dense(3 * (2*hmax + 1)))
+        self.decoder_layers.append(tfk.layers.Dense(3 * (2*hmax + 1), kernel_initializer='identity'))
         self.decoder_layers.append(tfk.layers.Reshape((-1, 3, 2*hmax+1)))
         self.decoder_layers.append(tfk.layers.Softmax(axis=-1))
 
@@ -65,7 +65,6 @@ class Assigner(tfk.models.Model):
         qkv, mask = inputs
 
         #Preprocess qkv a bit
-        qkv = self.normalize(qkv)
         qkv = self.embed(qkv)
 
         out = (qkv, mask)
