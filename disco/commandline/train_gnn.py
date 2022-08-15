@@ -7,33 +7,50 @@ from matplotlib import pyplot as plt
 import gemmi
 from os.path import abspath
 from argparse import ArgumentParser
-from disco.transformer import *
+from disco.layers import *
+from disco.egnn import *
 
+# Handle GPU selection
+def set_gpu(gpu_id):
+    gpus = tf.config.experimental.list_physical_devices('GPU')
+    for g in gpus:
+        tf.config.experimental.set_memory_growth(g, True)
+    print(gpus)
+    if gpus:
+        try:
+            if gpu_id is None:
+                tf.config.experimental.set_visible_devices([], 'GPU')
+            else:
+                tf.config.experimental.set_visible_devices(gpus[gpu_id], 'GPU')
+        except RuntimeError as e:
+            # Visible devices must be set at program startup
+            print(e)
+
+gpu_id = 0
+set_gpu(gpu_id)
 
 prefix = '/'.join(abspath(__file__).split('/')[:-1])
 filename = prefix + "/../data/pdb_data.csv.bz2"
 
-max_reflections_per_image=512
-min_reflections_per_image=20
-batch_size=1
+min_reflections_per_image=32
+max_reflections_per_image=256
+batch_size=3
 max_images = 10_000_000_000
-hmax = 50
-epochs=50
+epochs=10
 steps_per_epoch=100
-label_smoothing=0.1
 
 eager=False
 #eager=True
+layer_depth = 4
+hidden_dim = 12
 blocks = 6
-attention_dims = 32
-hidden_dims = 32
-num_heads=8
-
+dmodel = 16
 df = pd.read_csv(filename)
-lmin,lmax = 1., 1.2 #<-- a typical wavelength range in Å
+lmin,lmax = 1., 1.02 #<-- a typical wavelength range in Å
 
-#kernel_initializer = tfk.initializers.VarianceScaling(scale=1/20./blocks, mode='fan_avg')
-kernel_initializer = 'glorot_normal'
+kernel_initializer = tfk.initializers.VarianceScaling(scale=2., mode='fan_avg')
+#kernel_initializer = 'he_normal'
+activation="swish"
 
 
 cell =[34., 45., 98., 90., 90., 90.]
@@ -78,15 +95,28 @@ def isomorphous_data_generator(cell, spacegroup, dmin, lmin, lmax, max_reflectio
 
 
 #generatorator = lambda: data_generator(df, max_reflections_per_image, max_images, hmax)
-generatorator = lambda: isomorphous_data_generator(cell, spacegroup, dmin, lmin, lmax, max_reflections_per_image, max_images, hmax)
+generatorator = lambda: isomorphous_data_generator(cell, spacegroup, dmin, lmin, lmax, max_reflections_per_image, max_images)
+
+#edge_model = Resnet(blocks, dmodel)
+#node_model = Resnet(blocks, dmodel, output_shape=1)
+#hidden_model = Resnet(blocks, dmodel, output_shape=hidden_dim)
+
+#edge_model = MLP(blocks)
+#node_model = MLP(blocks, output_shape=1)
+#hidden_model = MLP(blocks, output_shape=hidden_dim)
+
+egnn = EGNN([EGCLayer.from_depth_hidden_dim(layer_depth, hidden_dim, activation=activation) for i in range(blocks)])
+#egnn = EGNN([EGCLayer.from_depth_hidden_dim(5, 16, steps=5)])
+
+assigner = Assigner(egnn)
 
 inputs = next(generatorator())
 sig = tf.nest.map_structure(tf.TensorSpec.from_tensor, inputs)
 data = tf.data.Dataset.from_generator(generatorator, output_signature=sig)
 data = data.unbatch().batch(batch_size)
 
-assigner = TransformerAssigner(blocks, attention_dims, hidden_dims, num_heads, kernel_initializer=kernel_initializer)
-opt = tfk.optimizers.Adam(1e-1)
+
+opt = tfk.optimizers.Adam()
 assigner.compile(opt, run_eagerly=eager)
 
 history = assigner.fit(data, epochs=epochs, steps_per_epoch=steps_per_epoch)
