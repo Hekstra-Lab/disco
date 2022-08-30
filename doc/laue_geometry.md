@@ -31,7 +31,7 @@ From the right triangle on the bottom half of the scattering diagram, it is clea
 $$
 \begin{align}
 \cos \phi &= \left(\frac{\lVert Q \rVert}{2} \right) \div  \lVert S_0 \rVert \\
-&= \left(\frac{\lambda}{2}\right) \lVert Q \rVert $
+&= \left(\frac{\lambda}{2}\right) \lVert Q \rVert 
 \end{align}
 $$
 
@@ -40,7 +40,7 @@ Combining the equations,
 $$
 \begin{align}
 Q\cdot -\hat{S}_0 &= \lVert Q\rVert^2 \frac{\lambda}{2} \\
-Q\cdot -\hat{S}_0 &= Q\cdot Q \frac{\lambda}{2}$
+Q\cdot -\hat{S}_0 &= Q\cdot Q \frac{\lambda}{2}
 \end{align}
 $$
 
