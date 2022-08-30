@@ -20,9 +20,9 @@ Starting from the dot product,
 
 $$
 \begin{aligned}
-Q\cdot -S_0 &= \lVert Q\rVert \lVert S_0 \rVert \cos \phi 
-\\ Q\cdot -\hat{S}_0 \frac{1}{\lambda} &= \frac{\lVert Q\rVert}{\lambda}  \cos \phi  
-\\ Q\cdot -\hat{S}_0  &= \lVert Q \rVert \cos \phi 
+Q\cdot -S_0 &= \lVert Q\rVert \lVert S_0 \rVert \cos \phi  \\
+Q\cdot -\hat{S}_0 \frac{1}{\lambda} &= \frac{\lVert Q\rVert}{\lambda}  \cos \phi   \\
+Q\cdot -\hat{S}_0  &= \lVert Q \rVert \cos \phi 
 \end{aligned}
 $$
 
