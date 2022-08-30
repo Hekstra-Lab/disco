@@ -18,27 +18,21 @@ where the origin of reciprocal space is on the right. Notice that the beam $S_0$
 
 Starting from the dot product,
 $$
-\begin{align}
-Q\cdot -S_0 &= \lVert Q\rVert \lVert S_0 \rVert \cos \phi \\
-Q\cdot -\hat{S}_0 \frac{1}{\lambda} &= \frac{\lVert Q\rVert}{\lambda}  \cos \phi  \\
-Q\cdot -\hat{S}_0  &= \lVert Q \rVert \cos \phi 
-\end{align}
+Q\cdot -S_0 = \lVert Q\rVert \lVert S_0 \rVert \cos \phi \\
+Q\cdot -\hat{S}_0 \frac{1}{\lambda} = \frac{\lVert Q\rVert}{\lambda}  \cos \phi  \\
+Q\cdot -\hat{S}_0  = \lVert Q \rVert \cos \phi 
 $$
 
 From the right triangle on the bottom half of the scattering diagram, it is clear that 
 $$
-\begin{align}
-\cos \phi &= \left(\frac{\lVert Q \rVert}{2} \right) \div  \lVert S_0 \rVert \\
-          &= \left(\frac{\lambda}{2}\right) \lVert Q \rVert
-\end{align}
+\cos \phi = \left(\frac{\lVert Q \rVert}{2} \right) \div  \lVert S_0 \rVert \\
+          = \left(\frac{\lambda}{2}\right) \lVert Q \rVert
 $$
 
 Combining the equations,
 $$
-\begin{align}
-Q\cdot -\hat{S}_0 &= \lVert Q\rVert^2 \frac{\lambda}{2} \\
-Q\cdot -\hat{S}_0 &= Q\cdot Q \frac{\lambda}{2}
-\end{align}
+Q\cdot -\hat{S}_0 = \lVert Q\rVert^2 \frac{\lambda}{2} \\
+Q\cdot -\hat{S}_0 = Q\cdot Q \frac{\lambda}{2}
 $$
 
 finally,
