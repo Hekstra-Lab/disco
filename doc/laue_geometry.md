@@ -17,9 +17,8 @@ The diffraction geometry looks like this for a particular reflection:
 where the origin of reciprocal space is on the right. Notice that the beam $S_0$ moves from left to right in this coordinate system. 
 
 Starting from the dot product,
-$$
-Q\cdot -S_0 = \lVert Q\rVert \lVert S_0 \rVert \cos \phi \\
-Q\cdot -\hat{S}_0 \frac{1}{\lambda} = \frac{\lVert Q\rVert}{\lambda}  \cos \phi  \\
+Q\cdot -S_0 = \lVert Q\rVert \lVert S_0 \rVert \cos \phi 
+Q\cdot -\hat{S}_0 \frac{1}{\lambda} = \frac{\lVert Q\rVert}{\lambda}  \cos \phi  
 Q\cdot -\hat{S}_0  = \lVert Q \rVert \cos \phi 
 $$
 
