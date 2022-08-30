@@ -38,6 +38,4 @@ $Q\cdot -\hat{S}_0 = Q\cdot Q \frac{\lambda}{2}$
 
 finally,
 
-$
-\lambda = \frac{-2 Q\cdot \hat{S}_0}{Q\cdot Q}
-$
+$\lambda = \frac{-2 Q\cdot \hat{S}_0}{Q\cdot Q}$
