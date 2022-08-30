@@ -33,9 +33,11 @@ $= \left(\frac{\lambda}{2}\right) \lVert Q \rVert $
 Combining the equations,
 
 $Q\cdot -\hat{S}_0 = \lVert Q\rVert^2 \frac{\lambda}{2} $
+
 $Q\cdot -\hat{S}_0 = Q\cdot Q \frac{\lambda}{2}$
 
 finally,
-$$
+
+$
 \lambda = \frac{-2 Q\cdot \hat{S}_0}{Q\cdot Q}
-$$
+$
