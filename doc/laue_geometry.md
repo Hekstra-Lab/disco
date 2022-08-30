@@ -17,22 +17,23 @@ The diffraction geometry looks like this for a particular reflection:
 where the origin of reciprocal space is on the right. Notice that the beam $S_0$ moves from left to right in this coordinate system. 
 
 Starting from the dot product,
-Q\cdot -S_0 = \lVert Q\rVert \lVert S_0 \rVert \cos \phi 
-Q\cdot -\hat{S}_0 \frac{1}{\lambda} = \frac{\lVert Q\rVert}{\lambda}  \cos \phi  
-Q\cdot -\hat{S}_0  = \lVert Q \rVert \cos \phi 
-$$
+
+$Q\cdot -S_0 = \lVert Q\rVert \lVert S_0 \rVert \cos \phi $
+
+$Q\cdot -\hat{S}_0 \frac{1}{\lambda} = \frac{\lVert Q\rVert}{\lambda}  \cos \phi  $
+
+$Q\cdot -\hat{S}_0  = \lVert Q \rVert \cos \phi $
 
 From the right triangle on the bottom half of the scattering diagram, it is clear that 
-$$
-\cos \phi = \left(\frac{\lVert Q \rVert}{2} \right) \div  \lVert S_0 \rVert \\
-          = \left(\frac{\lambda}{2}\right) \lVert Q \rVert
-$$
+
+$\cos \phi = \left(\frac{\lVert Q \rVert}{2} \right) \div  \lVert S_0 \rVert $
+
+$= \left(\frac{\lambda}{2}\right) \lVert Q \rVert $
 
 Combining the equations,
-$$
-Q\cdot -\hat{S}_0 = \lVert Q\rVert^2 \frac{\lambda}{2} \\
-Q\cdot -\hat{S}_0 = Q\cdot Q \frac{\lambda}{2}
-$$
+
+$Q\cdot -\hat{S}_0 = \lVert Q\rVert^2 \frac{\lambda}{2} $
+$Q\cdot -\hat{S}_0 = Q\cdot Q \frac{\lambda}{2}$
 
 finally,
 $$
