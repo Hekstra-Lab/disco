@@ -38,6 +38,14 @@ class Detector:
         ])
         return cls(dmat)
 
+    def pix_to_cartesian(self, xy):
+        """
+        Convert array of xy pixel coordinates (n x 2) to cartesian coordinates.
+        """
+        c = np.concatenate([xy, np.ones(len(xy))[:,None]], axis=-1)@self.dmat
+        return c
+
+
     def project(self, s1):
         """
         Project scattered beam vectors onto the detector.
