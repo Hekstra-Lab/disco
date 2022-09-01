@@ -2,7 +2,7 @@
 The goal is to calculate the wavelength associated with a predicted reflection. 
 In this setting, we can assume we have access to 
  - The direction of the incoming beam, $\hat {S}_0$. Which is a unit vector. 
- - The theoretical scattering vector, $Q=RB$, calculated from a rotation matrix, $R$ and reciprocal bases, $B$. 
+ - The theoretical scattering vector, $Q=hRB$, calculated from the miller index, a rotation matrix, $R$ and reciprocal bases, $B$. 
 
 Some useful relationships:
  - $\lVert S_0 \rVert = 1 / \lambda$
