@@ -89,14 +89,10 @@ class Ball:
         self.lambda_max = lambda_max
         self.s0 = s0 / np.linalg.norm(s0)
 
-    def get_random_scattered_beam_wavevectors(self, return_millers=False):
+    def s1_from_R(self, R, return_millers=False):
         """
-        Randomly generate a rotation matrix, and use it to compute all feasible scattered beam wavevectors.
+        Get s1 wavevectors from rotation matrix, R
         """
-        from scipy.stats import special_ortho_group
-        # Completely random unbiased rotation matrix in 3D
-        R = special_ortho_group(3).rvs()
-
         # See https://dials.github.io/documentation/conventions.html
         B = self.cell.fractionalization_matrix
         Qall = (R@B@self.Hall.T).T
@@ -110,7 +106,12 @@ class Ball:
             return s1[feasible], self.Hall[feasible]
         return s1[feasible]
 
-
-
-
+    def get_random_scattered_beam_wavevectors(self, return_millers=False):
+        """
+        Randomly generate a rotation matrix, and use it to compute all feasible scattered beam wavevectors.
+        """
+        from scipy.stats import special_ortho_group
+        # Completely random unbiased rotation matrix in 3D
+        R = special_ortho_group(3).rvs()
+        return self.s1_from_R(R, return_millers)
 
