@@ -13,8 +13,3 @@ disco.wow
 
 ![disco.wow output](example.gif)
 
-
-### Usage
-Right now all this does is install an admittedly silly commandline application. 
-`disco.wow` will plot 100 randomly generated laue patterns and then quit. 
-
